@@ -1,0 +1,29 @@
+{% extends 'pictures/base.html' %}
+{% load static %}
+
+{% block title %}Get shiba image {% endblock %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="header">
+        Любишь шайб, но в твоей галерее их слишком мало?
+
+        Воспользуйся нашим сервисом и получи доступ к неисчерпаемому источнику милых собачек
+
+        Найди свою прямо сейчас
+    </div>
+    <div class="image-container">
+        <div class="image">
+            <img src="{{ image_url }}" alt="">
+        </div>
+    </div>
+    <div class="buttons">
+        <form action="" method="get">
+            <button type="submit">Новая шайбочка</button>
+            <button>Скачать</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
