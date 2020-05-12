@@ -32,10 +32,13 @@
 <script>
     $(document).ready(function () {
         let image_url = '{{ image_url }}';
+        
         let filename = '{{ filename }}';
+        console.log(filename);
         let token = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        console.log(token);
-
+        // function downloadImage(){
+        //     window.location.href = 'download/'+filename;
+        // }
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie !== '') {
@@ -55,12 +58,11 @@
 
         $('#download').on('click', function () {
             console.log('sadsadasdas');
-            $.ajax({
+            $.post({
                 url: 'download/',
                 headers: {
                     'X-CSRFToken': token,
                 },
-                method: 'POST',
                 data: {
                     'filename': filename,
                     'image_url': image_url,
@@ -68,7 +70,8 @@
                 },
                 dataType: 'json',
                 success: function (response) {
-                    console.log(response);
+                    let url = 'download/'+response.filename.split('.')[0];
+                    window.location.href = url;
                 }
             });
         });
