@@ -1,10 +1,10 @@
 from django.views.generic import TemplateView, View
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import requests
-
+from django.shortcuts import reverse
 import os
 
-from .utils import save_file
+from .utils import write_file, download
 
 class GetShibaImage(TemplateView):
     template_name = 'pictures/shibe.html'
@@ -27,13 +27,30 @@ class DownloadImage(View):
         filename = request.POST.get('filename')
         if image_url and filename:
             response = requests.get(image_url)
-            is_downloaded = save_file(filename, response)
-            if is_downloaded:
+            filename = write_file(filename, response)
+            if filename:
                 json_response['message'] = 'Success'
-                json_response['path'] = is_downloaded
+                json_response['filename'] = filename
             else:
                 json_response['message'] = 'File doesn`t download'
         else:
             json_response['message'] = 'Requests are empty'
             
         return JsonResponse(json_response)
+
+# def download(request):
+#     file_name = #get the filename of desired excel file
+#     path_to_file = #get the path of desired excel file
+#     response = HttpResponse(mimetype='application/force-download')
+#     response['Content-Disposition'] = f'attachment; filename={filename}
+#     response['X-Sendfile'] = filename
+#     return response
+
+
+def save_file(request, filename):
+    # try:
+        # Get home directory
+    filename = f'{filename}.jpg'
+    response = download(filename)
+    # Open file in download folder
+    return response
