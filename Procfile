@@ -1,1 +1,1 @@
-web: gunicorn shiba_site.wsgi --log-file -
+web: gunicorn shibe_site.wsgi --log-file -
