@@ -1,25 +1,29 @@
 import os
+from django.http import HttpResponse, FileResponse
 
-def save_file(filename, response):
-    try:
+def write_file(filename, response):
+    # try:
         # Get home directory
-        home = os.path.expanduser('~')
-        # If Downloads folder is in home directory
-        if os.path.exists(os.path.join(home, 'Downloads')):
-            # Set path to file home/downloads/filename
-            filename = os.path.join(os.path.join(home, 'Downloads'), filename)
-        # Elif Загрузки folder in home directory
-        elif os.path.exists(os.path.join(home, 'Загрузки')):
-            # Set path to file home/загрузки/filename
-            filename = os.path.join(os.path.join(home, 'Загрузки'), filename)
-        else:
-            # Set path to file home/filename
-            filename = os.path.join(home, filename)
-        # Open file in download folder
-        print(filename)
-        with open(filename, 'wb') as f:
-            # And write binary file from response to it
-            f.write(response.content)
-        return filename
-    except:
-        return False
+    home = os.path.expanduser('~')
+
+    path = os.path.join(home, filename)
+    # Open file in download folder
+    with open(path, 'wb') as f:
+        # And write binary file from response to it
+        f.write(response.content)
+
+    return filename
+
+
+def download(filename):
+    home = os.path.expanduser('~')
+
+    filename = os.path.join(home, filename)
+
+    with open(filename, "rb") as f:
+        response = HttpResponse(f.read(), content_type="image/jpeg")
+        response['Content-Disposition'] = f'attachment; filename={filename}'
+        response['X-Sendfile'] = filename
+    os.remove(filename)
+    return response
+
