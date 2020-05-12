@@ -27,7 +27,7 @@ class DownloadImage(View):
         filename = request.POST.get('filename')
         if image_url and filename:
             response = requests.get(image_url)
-            is_downloaded = save_file(filename)
+            is_downloaded = save_file(filename, response)
             if is_downloaded:
                 json_response['message'] = 'Success'
             else:

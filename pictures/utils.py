@@ -1,6 +1,6 @@
 import os
 
-def save_file(filename):
+def save_file(filename, response):
     try:
         # Get home directory
         home = os.path.expanduser('~')
@@ -16,6 +16,7 @@ def save_file(filename):
             # Set path to file home/filename
             filename = os.path.join(home, filename)
         # Open file in download folder
+        print(filename)
         with open(filename, 'wb') as f:
             # And write binary file from response to it
             f.write(response.content)
