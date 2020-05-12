@@ -4,6 +4,8 @@ import requests
 
 import os
 
+from .utils import save_file
+
 class GetShibaImage(TemplateView):
     template_name = 'pictures/shibe.html'
 
@@ -19,25 +21,18 @@ class GetShibaImage(TemplateView):
 class DownloadImage(View):
 
     def post(self, request):
-        print('lol!')
         json_response = {}
-        try:
-            image_url = request.POST.get('image_url')
-            filename = request.POST.get('filename')
 
+        image_url = request.POST.get('image_url')
+        filename = request.POST.get('filename')
+        if image_url and filename:
             response = requests.get(image_url)
-            home = os.path.expanduser('~')
-            print(home)
-            if os.path.exists(os.path.join(home, 'Downloads')):
-                filename = os.path.join(os.path.join(home, 'Downloads'), filename)
-            elif os.path.exists(os.path.join(home, 'Загрузки')):
-                filename = os.path.join(os.path.join(home, 'Загрузки'), filename)
-            print(filename)
-            with open(filename, 'wb') as f:
-                f.write(response.content)
+            is_downloaded = save_file(filename)
+            if is_downloaded:
+                json_response['message'] = 'Success'
+            else:
+                json_response['message'] = 'File doesn`t download'
+        else:
+            json_response['message'] = 'Requests are empty'
             
-            json_response['message'] = 'Success'
-        except:
-            json_response['message'] = 'Error'
-
         return JsonResponse(json_response)
