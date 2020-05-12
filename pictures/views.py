@@ -30,6 +30,7 @@ class DownloadImage(View):
             is_downloaded = save_file(filename, response)
             if is_downloaded:
                 json_response['message'] = 'Success'
+                json_response['path'] = is_downloaded
             else:
                 json_response['message'] = 'File doesn`t download'
         else:

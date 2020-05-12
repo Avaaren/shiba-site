@@ -20,6 +20,6 @@ def save_file(filename, response):
         with open(filename, 'wb') as f:
             # And write binary file from response to it
             f.write(response.content)
-        return True
+        return filename
     except:
         return False
