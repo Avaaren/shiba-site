@@ -33,8 +33,8 @@
     $(document).ready(function () {
         let image_url = '{{ image_url }}';
         let filename = '{{ filename }}';
-
-
+        let token = '{{ csrftoken }}';
+        console.log(token);
 
         function getCookie(name) {
             var cookieValue = null;
@@ -49,6 +49,7 @@
                     }
                 }
             }
+            console.log(cookieValue);
             return cookieValue;
         }
 
@@ -63,7 +64,7 @@
                 data: {
                     'filename': filename,
                     'image_url': image_url,
-                    // csrfmiddlewaretoken: getCookie('csrftoken')
+                    csrfmiddlewaretoken: getCookie('csrftoken')
                 },
                 dataType: 'json',
                 success: function (response) {
