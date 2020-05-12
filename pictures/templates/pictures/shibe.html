@@ -56,11 +56,14 @@
             console.log('sadsadasdas');
             $.ajax({
                 url: 'download/',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
                 method: 'POST',
                 data: {
                     'filename': filename,
                     'image_url': image_url,
-                    csrfmiddlewaretoken: getCookie('csrftoken')
+                    // csrfmiddlewaretoken: getCookie('csrftoken')
                 },
                 dataType: 'json',
                 success: function (response) {
