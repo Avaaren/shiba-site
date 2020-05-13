@@ -18,7 +18,7 @@ class GetShibaImage(TemplateView):
         return data
 
 
-class DownloadImage(View):
+class DownloadClickHandle(View):
 
     def post(self, request):
         json_response = {}
@@ -38,19 +38,14 @@ class DownloadImage(View):
             
         return JsonResponse(json_response)
 
-# def download(request):
-#     file_name = #get the filename of desired excel file
-#     path_to_file = #get the path of desired excel file
-#     response = HttpResponse(mimetype='application/force-download')
-#     response['Content-Disposition'] = f'attachment; filename={filename}
-#     response['X-Sendfile'] = filename
-#     return response
+class DownloadFileView(View):
 
+    def get(self, request, **kwargs):
 
-def save_file(request, filename):
-    # try:
-        # Get home directory
-    filename = f'{filename}.jpg'
-    response = download(filename)
-    # Open file in download folder
-    return response
+        filename = self.kwargs.get('filename')
+        filename = f'{filename}.jpg'
+        response = download(filename)
+        if response:
+            return response
+        else:
+            return False
