@@ -3,33 +3,72 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.container-fluid{
+    padding: 0;
+    background-color: rgb(31, 28, 28);
+    height:100vh;
+}
 .header {
-    background-color: rgb(131, 101, 101);
+    background-color: rgb(31, 28, 28);
     width: 100%;
     padding: 15px;
     text-align: center;
+    font-style: sans-serif;
+}
+.header h2 {
+    color:rgb(235, 223, 223);
+    font-weight:400;
 }
 
+.header p{
+    color: rgb(238, 226, 226);
+    font-weight:350;
+}
 .image-container {
     display: flex;
-    justify-content:center
+    justify-content:center;
+    background-color: rgb(31, 28, 28);
+    padding: 0px 25px 25px 25px;
+
 }
 .image {
-    background-color: rgb(73, 55, 55);
+    background-color: rgb(114, 112, 112);
+    border-radius: 40px;
+
 }
 .image img {
     border: 1px solid;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 650px;
+    border-radius: 40px;
     
 }
 
 .buttons {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(31, 28, 28);
+    padding-bottom: 30px;
 }
-
-.buttons button {
+.button {
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.button button {
     padding: 15px;
     width: 300px;
+    border-radius: 15px;
+    letter-spacing:1px;
+    background:none;
+    color:rgb(250, 250, 250);
+    border: 2px solid whitesmoke;
+    transition: .2s;
+}
+
+.button button:hover {
+    box-shadow: 0px 0 15px whitesmoke;
+    cursor: pointer;
+    background-color: rgb(42, 37, 37);
 }
