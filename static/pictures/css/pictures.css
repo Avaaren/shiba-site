@@ -8,9 +8,12 @@
     background-color: rgb(31, 28, 28);
     
 }
-.wrapper {
-    height:100vh;
+body{
+    background-color: rgb(31, 28, 28);
 }
+/* .wrapper {
+    height:100vh;
+} */
 .view-count{
     position: absolute;
     color: #f6eded;
