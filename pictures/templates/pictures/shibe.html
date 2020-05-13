@@ -5,24 +5,30 @@
 
 {% block content %}
 
-<div class="wrapper">
-    <div class="header">
-        Любишь шайб, но в твоей галерее их слишком мало?
-
-        Воспользуйся нашим сервисом и получи доступ к неисчерпаемому источнику милых собачек
-
-        Найди свою прямо сейчас
-    </div>
-    <div class="image-container">
-        <div class="image">
-            <img src="{{ image_url }}" alt="">
+<div class="container-fluid">
+    <div class="wrapper">
+        <div class="header">
+            <h2>shibe-site</h2>
+            <p>Любишь шайб, но в твоей галерее их слишком мало?</p>
+    
+            <p>Воспользуйся нашим сервисом и получи доступ к неисчерпаемому источнику милых собачек</p>
+            <p>Найди свою прямо сейчас</p>
         </div>
-    </div>
-    <div class="buttons">
-        <form action="." method="get">
-            <button type="submit">Новая шайбочка</button>
-        </form>
-        <button id='download'>Скачать</button>
+        <div class="image-container">
+            <div class="image">
+                <img src="{{ image_url }}" alt="">
+            </div>
+        </div>
+        <div class="buttons">
+           <div class="button">
+            <form action="." method="get">
+                <button type="submit">Новая шайбочка</button>
+            </form>
+           </div>
+            <div class="button">
+                <button id='download'>Скачать</button>
+            </div>
+        </div>
     </div>
 </div>
 {% csrf_token %}
