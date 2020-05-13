@@ -6,6 +6,9 @@
 .container-fluid{
     padding: 0;
     background-color: rgb(31, 28, 28);
+    
+}
+.wrapper {
     height:100vh;
 }
 .header {
