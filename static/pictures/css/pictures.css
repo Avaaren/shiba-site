@@ -11,14 +11,22 @@
 body{
     background-color: rgb(31, 28, 28);
 }
-/* .wrapper {
-    height:100vh;
-} */
-.view-count{
-    position: absolute;
-    color: #f6eded;
-    font-size:28px;
+
+.navbar {
+    display: flex;
+    justify-content:space-between;
+}
+
+.view-count, .auth-info {
+    color:whitesmoke;
     font-weight: 350;
+}
+
+.auth-info a{
+    text-decoration:none;
+    cursor: pointer;
+    color:whitesmoke;
+    font-weight: 450;
 }
 
 .header {
