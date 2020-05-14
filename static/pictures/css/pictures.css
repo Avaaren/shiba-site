@@ -45,16 +45,31 @@ body{
 
 }
 .image {
+    position: relative;
     background-color: rgb(114, 112, 112);
     border-radius: 40px;
 
 }
 .image img {
+   
     border: 1px solid;
     width: 700px;
     height: 650px;
     border-radius: 40px;
+    transition: 0.5s;
     
+}
+
+.image img:hover + .like-icon , .like-icon:hover {
+   
+    opacity: 1;
+
+}
+
+.image img + .like-icon, .like-icon {
+   
+    transition: 0.5s;
+
 }
 
 .buttons {
@@ -88,6 +103,19 @@ body{
     box-shadow: 0px 0 15px whitesmoke;
     cursor: pointer;
     background-color: rgb(42, 37, 37);
+}
+
+.like-icon {
+    color:red;
+    font-size:148px;
+
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke: 1px red;
+    opacity: 0;
+
 }
 
 @media (min-width: 325px) and (max-width: 768px) {
