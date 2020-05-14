@@ -7,4 +7,4 @@ class Liked(models.Model):
     image_href = models.CharField('Ссылка на страницу', max_length=300, db_index=True)
 
     def __str__(self):
-        return f'{user}-{image_href}'
+        return f'{self.user}-{self.image_href}'
