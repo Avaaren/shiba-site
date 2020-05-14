@@ -7,8 +7,17 @@
 
 <div class="container-fluid">
     <div class="wrapper">
-        <div class="view-count">
-            <span>Вы посмотрели {{ dogs_viewed }} шайб</span>
+        <div class="navbar">
+            <div class="view-count">
+                <span>Вы посмотрели {{ dogs_viewed }} шайб</span>
+            </div>
+            <div class="auth-info">
+                {% if request.user.is_authenticated %}
+                    Вы зашли как {{ request.user }}, <a href="{% url 'logout' %}">Выйти?</a>
+                {% else %}
+                    Вы не авторизированны, <a href="{% url 'login' %}">Войти</a>
+                {% endif %}
+            </div>
         </div>
         <div class="header">
             <h2>shibe-site</h2>
