@@ -5,6 +5,8 @@ from django.shortcuts import reverse
 import os
 
 from .utils import write_file, download
+from likes.models import Liked
+
 
 class GetShibaImage(TemplateView):
     template_name = 'pictures/shibe.html'
@@ -26,6 +28,14 @@ class GetShibaImage(TemplateView):
         dogs_viewed = self.request.session.get('dogs_viewed', 0)
         # Execute original method and append it
         data = super(GetShibaImage, self).get_context_data(**kwargs)
+        
+        if self.request.user.is_authenticated:
+            try:
+                Liked.objects.get(user=self.request.user, image_href=image_url)
+                data['liked'] = True
+            except:
+                data['liked'] = False
+        
         data['image_url'] = image_url
         data['filename'] = image_url.split('/')[-1]
         data['dogs_viewed'] = dogs_viewed
