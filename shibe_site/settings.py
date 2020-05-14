@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     # Local
     'pictures.apps.PicturesConfig',
     'account.apps.AccountConfig',
+    'likes.apps.LikesConfig',
 ]
 
 MIDDLEWARE = [
