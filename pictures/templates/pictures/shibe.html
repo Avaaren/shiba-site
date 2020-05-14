@@ -20,9 +20,18 @@
             <div class="image">
               
                 <img src="{{ image_url }}" alt="">
-                <span class='like-icon'>
-                    <i class="far fa-heart fa-2x"></i>
-                </span>
+                {% if request.user.is_authenticated %}
+                    {% if liked %}
+                    <span class='like-icon'>
+                        <i class="fas fa-heart fa-2x" id='heart'></i>
+                    </span>
+                    {% else %}
+                    <span class='like-icon'>
+                        <i class="far fa-heart fa-2x" id='heart'></i>
+                    </span>
+                    {% endif %}
+                {% endif %}
+                
             </div>
         </div>
         <div class="buttons">
@@ -51,22 +60,6 @@
         // function downloadImage(){
         //     window.location.href = 'download/'+filename;
         // }
-        function getCookie(name) {
-            var cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            console.log(cookieValue);
-            return cookieValue;
-        }
 
         $('#download').on('click', function () {
             console.log('sadsadasdas');
@@ -84,6 +77,24 @@
                 success: function (response) {
                     let url = 'download/'+response.filename.split('.')[0];
                     window.location.href = url;
+                }
+            });
+        });
+
+        $('.like-icon').on('click', function(){
+            $.post({
+                url:'like/',
+                headers: {
+                    'X-CSRFToken':token,
+                },
+                dataType:'json',
+                data: {
+                    'image_url': image_url,
+                },
+                success: function(response){
+                    console.log(response);
+                    $('#heart').toggleClass('far fas');
+
                 }
             });
         });
